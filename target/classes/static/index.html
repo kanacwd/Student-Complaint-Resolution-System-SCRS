@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIU - Student Complaint Resolution System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <img src="https://via.placeholder.com/50" alt="Logo" id="main-logo"> <span>AIU SCRS</span>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="#" onclick="app.showSection('home')">Home</a>
+            <a href="#" onclick="app.showSection('about')">About Us</a>
+            <a href="#" id="nav-complaints" class="auth-only" onclick="app.showSection('complaints')">Complaints</a>
+            <a href="#" id="nav-admin" class="admin-only" onclick="app.showSection('admin')">Admin Panel</a>
+            <button id="auth-btn" class="btn-login" onclick="app.showSection('auth')">Login</button>
+            <button id="logout-btn" class="auth-only btn-logout" onclick="app.logout()">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<main id="main-content">
+
+    <section id="home-section" class="active">
+        <div class="hero">
+            <h1>Your Voice Matters for AIU</h1>
+            <p>Centralized platform for Academic and Facility complaint resolution.</p>
+            <div class="hero-btns">
+                <button class="btn btn-primary" onclick="app.showSection('new-complaint')">Submit Complaint</button>
+                <button class="btn btn-secondary" onclick="app.showSection('about')">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-section">
+        <h2>About SCRS</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Purpose</h3>
+                <p>Creating transparency between students and AIU administration.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-check-double"></i>
+                <h3>Process</h3>
+                <p>Submit -> Vote -> Resolve -> Student Confirmation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="auth-section">
+        <div class="auth-box">
+            <div class="auth-tabs">
+                <button onclick="app.toggleAuthTab('login')" id="tab-login" class="active">Login</button>
+                <button onclick="app.toggleAuthTab('register')" id="tab-register">Register</button>
+            </div>
+            <form id="loginForm" class="auth-form active">
+                <input type="text" placeholder="Student ID / Username" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <form id="registerForm" class="auth-form">
+                <input type="text" placeholder="First Name" name="firstName" required>
+                <input type="text" placeholder="Last Name" name="lastName" required>
+                <input type="text" placeholder="Student ID (e.g. 210101...)" name="studentId" required>
+                <input type="email" placeholder="Official Email" name="email" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="complaints-section">
+        <div class="section-header">
+            <h2>All Complaints</h2>
+            <div class="filters">
+                <select onchange="app.filterComplaints(this.value)">
+                    <option value="all">All Types</option>
+                    <option value="ACADEMIC">Academic</option>
+                    <option value="FACILITY">Facility</option>
+                </select>
+            </div>
+        </div>
+        <div id="complaints-list" class="grid"></div>
+    </section>
+
+    <section id="new-complaint-section">
+        <div class="form-container">
+            <h2>New Complaint</h2>
+            <form id="complaintForm">
+                <input type="text" placeholder="Title" name="title" required>
+                <select name="type" id="complaint-type" onchange="app.updateDepartments()">
+                    <option value="ACADEMIC">Academic Issue</option>
+                    <option value="FACILITY">Facility / Household</option>
+                </select>
+                <select name="targetDepartment" id="targetDepartment" required>
+                </select>
+                <textarea name="description" placeholder="Detail description..." rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary">Submit for Routing</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
