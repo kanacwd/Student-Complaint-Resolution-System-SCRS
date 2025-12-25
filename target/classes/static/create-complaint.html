@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Complaint | SRCS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Submit Complaint</h2>
+
+    <input type="text" id="title" placeholder="Complaint Title">
+    <textarea id="description" placeholder="Describe your issue"></textarea>
+
+    <select id="type">
+        <option value="ACADEMIC">Academic</option>
+        <option value="FACILITY">Facility</option>
+    </select>
+
+    <button onclick="createComplaint()">Submit</button>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
